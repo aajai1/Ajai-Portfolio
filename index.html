@@ -307,17 +307,25 @@
     }
 }
 .bottom-gif {
-    position: fixed;  /* Keeps it at the bottom */
+    position: fixed;
     bottom: -5;
     left: 0;
-    width: 100%;  /* Full width */
-    display: 1000; /* Ensures it's above other elements */
+    width: 100%;
+    display: 1000;
 }
 
 .bottom-gif img {
-    width: 100%;  /* Full width */
-    height: auto;  /* Maintain aspect ratio */
+    width: 100%;
+    height: auto;
     display: block;
+}
+
+/* Ensure it's at the bottom on mobile screens */
+@media screen and (max-width: 768px) {
+    .bottom-gif {
+        position: fixed; /* Ensures it stays at the bottom */
+        bottom: 0;
+    }
 }
 
 
