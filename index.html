@@ -319,6 +319,43 @@
     height: auto;  /* Maintain aspect ratio */
     display: block;
 }
+.bottom-gif {
+    position: fixed;
+    bottom: -20px; /* Adjust vertical position */
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.bottom-gif img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .bottom-gif {
+        bottom: -10px; /* Adjust position for smaller screens */
+    }
+
+    .bottom-gif img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .bottom-gif {
+        bottom: -5px; /* Further adjust for smaller devices */
+    }
+
+    .bottom-gif img {
+        width: 100%;
+        height: auto;
+    }
+}
+
 
 
 
