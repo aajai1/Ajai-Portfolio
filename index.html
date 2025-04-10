@@ -1,484 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajai - Automation Tester</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ajai - Automation Tester</title>
 
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-   
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
-    
+  <style>
+    body {
+      background: #ffffff;
+      color: #333;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
 
-    <style>
-        body {
-            background: #ffffff;
-            color: #333;
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden; /* Prevents horizontal scroll but allows vertical scrolling */
-        }
-        
+    /* Resume Button */
+    .resume-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 10px 18px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #000;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease-in-out;
+    }
 
-        .container {
-            width: 80%;
-            padding: 80px 10%;
-            text-align: left;
-            position: relative;
-            z-index: 10;
-        }
+    .resume-btn:hover {
+      background: rgba(255, 255, 255, 0.5);
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
 
-        h1 {
-            font-size: 3.5em;
-            color: #222;
-            margin-bottom: 10px;
-        }
+    .header-container {
+      position: relative;
+      margin-bottom: 30px;
+    }
 
-        h2 {
-            font-size: 2em;
-            color: #555;
-            margin-bottom: 30px;
-        }
+    .header-container h1 {
+      font-size: 3.5em;
+      color: #222;
+      margin: 0;
+      padding-right: 180px; /* space for resume button */
+    }
 
-        /* Floating Logos */
-        .floating-logos img {
-            position: absolute;
-            width: 120px; /* Increased size */
-            opacity: 0.2; /* Slightly more visible */
-            animation: float 10s infinite alternate ease-in-out; /* Faster animation */
-        }
+    h2 {
+      font-size: 2em;
+      color: #555;
+      margin-bottom: 30px;
+    }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(60px) translateX(40px); }
-            100% { transform: translateY(0px); }
-        }
+    /* Navbar */
+    .navbar {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+      padding: 15px 10%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      z-index: 100;
+    }
 
-       
-        .logo2 { top: 50%; left: 80%; animation-delay: 1s; }
-        
-        .phone-modal {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(15px);
-        padding: 25px;
-        border-radius: 12px;
-        text-align: center;
-        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        z-index: 200;
+    .navbar a {
+      color: #333;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 1.3em;
+      transition: 0.3s;
+    }
+
+    .navbar a:hover {
+      color: #ff6600;
+    }
+
+    .container {
+      width: 80%;
+      padding: 100px 10%;
+      text-align: left;
+      position: relative;
+      z-index: 10;
+    }
+
+    .section {
+      margin: 40px 0;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      z-index: 10;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .section:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .social-icons {
+      margin-top: 20px;
+      display: flex;
+      gap: 25px;
+    }
+
+    .social-icons a {
+      color: #333;
+      font-size: 2.2em;
+      transition: 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #ff6600;
+    }
+
+    /* Phone Modal */
+    .phone-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(15px);
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      z-index: 200;
     }
 
     .phone-modal-content {
-        color: #222;
-        font-size: 1.5em;
+      color: #222;
+      font-size: 1.5em;
     }
 
     .phone-modal button {
-        background: #ff9800;
-        color: white;
-        padding: 10px 15px;
-        margin: 10px;
-        border: none;
-        border-radius: 8px;
-        font-size: 1em;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .phone-modal button:hover {
-        background: #e67e00;
+      background: #ff9800;
+      color: white;
+      padding: 10px 15px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
     }
 
     .phone-modal .close-btn {
-        background: red;
+      background: rgb(37, 155, 43);
     }
 
     .phone-modal .close-btn:hover {
-        background: darkred;
-    }
-       
-       
-
-        /* Navbar */
-        .navbar {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-            padding: 15px 10%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-            z-index: 100;
-        }
-
-        .navbar a {
-            color: #333;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.3em;
-            transition: 0.3s;
-        }
-
-        .navbar a:hover {
-            color: #ff6600;
-        }
-
-        /* Sections with Better Glass Effect */
-        .section {
-            margin: 40px 0;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            z-index: 10;
-        }
-
-        /* Different Opacity for Each Section */
-        #about { background: rgba(255, 255, 255, 0.12); }
-        #skills { background: rgba(255, 255, 255, 0.18); }
-        #certifications { background: rgba(255, 255, 255, 0.15); }
-        #education { background: rgba(255, 255, 255, 0.2); }
-
-        /* Social Icons */
-        .social-icons {
-            margin-top: 20px;
-            display: flex;
-            gap: 25px;
-        }
-
-        .social-icons a {
-            color: #333;
-            font-size: 2.2em; /* Increased size */
-            transition: 0.3s;
-        }
-
-        .social-icons a:hover {
-            color: #ff6600;
-        }
-        /* Floating Call Icon */
-.call-icon {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: linear-gradient(135deg, #4caf50, #81c784);
-    color: white;
-    font-size: 24px;
-    padding: 15px;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: 0.3s ease-in-out;
-}
-
-.call-icon:hover {
-    background: linear-gradient(135deg, #388e3c, #66bb6a);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-.job-animation {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 150px; /* Adjust the height as needed */
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
-    z-index: 50;
-}
-
-.job-animation img {
-    max-height: 100px; /* Adjust size */
-    animation: moveJob 5s linear infinite alternate;
-}
-
-/* Simple Floating Animation */
-@keyframes moveJob {
-    0% { transform: translateY(0px); }
-    100% { transform: translateY(-10px); }
-}
-.job-animation {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 150px; /* Adjust the height as needed */
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
-    z-index: 50;
-}
-
-.job-animation img {
-    max-height: 100px; /* Adjust size */
-    animation: moveJob 5s linear infinite alternate;
-}
-
-
-/* Section Hover Effect */
-.section {
-    margin: 40px 0;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    position: relative;
-    z-index: 10;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-/* Hover Effect */
-.section:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-}
-#about {
-    background-color: #fcfcfc; /* Optional: Background color */
-    color: rgb(0, 0, 0);
-    padding: 40px;
-    border-radius: 12px;
-    position: relative;
-    min-height: 100px; /* Adjust height as needed */
-    overflow: hidden;
-}
-
-#about::after {
-    content: "";
-    position: absolute;
-    right: 10px;  /* Adjust position */
-    bottom: 10px; /* Adjust position */
-    width: 200px; /* Adjust size */
-    height: 200px; /* Adjust size */
-    background: url('https://media-hosting.imagekit.io//ab14d1565dc1404c/ezgif.com-gif-maker.gif?Expires=1836142841&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=iBjPNR7wn8NXLAySPZ~2uRueQ7TIwSTo0iAfQKVYsQF-NsjrwIyy1gWpu3pEZ-VIjTzmlw2de-G3Y4nyle8Gzp7RLGCG6koc6plHBYx2XS7bnSUgZYxnD~vX1HfE35o4XjYQpZlXyegWH-em1vPCy5y0gskQDxXX3sRGjkMJBqO9g-jhIcsGkc0yFKYROaI7-J8bTPsvhcG5Zxq-J7eJeE7nFnNOqQpBQpMIm4Vh4DM7ZMT9K1~NsfxBjjVF22i0fGWIIhEmUT5Tb9Xmev7d~zjWxWEmwxLD~V7UmqtD06UpfI23l6-z5Xoxb0omuWpsGWncgzFdc2fRCOeWoan21g__') no-repeat center/contain;
-    transform: scaleX(-1) scale(2);; /* Flip the GIF horizontally */
-    opacity: 0.8; /* Adjust transparency if needed */
-}
-#education {
-    background-color: #fcfcfc; /* Optional: Background color */
-    color: rgb(0, 0, 0);
-    padding: 40px;
-    border-radius: 12px;
-    position: relative;
-    min-height: 100px; /* Adjust height as needed */
-    overflow: hidden;
-}
-
-#education::after {
-    content: "";
-    position: absolute;
-    right: -200px; /* Start off the screen */
-    bottom: 10px; /* Adjust position */
-    width: 200px; /* Adjust size */
-    height: 200px; /* Adjust size */
-    background: url('https://media-hosting.imagekit.io//98c091ceb6874e65/ezgif.com-gif-maker.gif?Expires=1836140486&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=ZFw-HqqzTKieHbSA4FEqLw4OvyqvHZISA7lsgyy3ncilZ9laYWFLJo5pqmMZbKndmwAA8C8DKpeOSovlajwrT5kuPTI6-Gum0cqBSZ4bvasHIjSKwgCEWlC2y2rUtqmpPOkCmSA5b7QLjBduvPwBWmzY9UIp6B6Zn2B-2x8NPwWL6bO~ej-76p5OBFu7Mb0yy09W71aCfDcg~hun771npfpfwrBPIr9zlc7Z-L0e72aZ4w-dxV23iiPljijAfk-pLx5dRtzARLeEm-Ou5OpKkuZU7iZtCNWsS778PnTH82NSIddbDb5BP-EuI9AxQw~BaOnAH7XEMsiqmoHqQRHZpw__') no-repeat center/contain;
-    transform: scaleX(-1) scale(1.1); /* Flip the GIF horizontally */
-    opacity: 0.8; /* Adjust transparency if needed */
-    animation: moveGif 5s linear infinite; /* Animation to move right to left */
-}
-
-@keyframes moveGif {
-    0% {
-        right: -200px; /* Start off-screen */
-    }
-    100% {
-        right: 100%; /* Move across to the left */
-    }
-}
-.bottom-gif {
-    position: fixed;
-    bottom: ;
-    left: 0;
-    width: 100%;
-    display: 1000;
-}
-
-.bottom-gif img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Ensure it's at the bottom on mobile screens */
-@media screen and (max-width: 768px) {
-    .bottom-gif {
-        position: fixed; /* Ensures it stays at the bottom */
-        bottom: 0;
-    }
-}
-@media (max-width: 768px) {
-    ul {
-        font-size: 1em; /* Adjust font size for mobile */
+      background: darkred;
     }
 
-    li {
-        padding-bottom: 10px; /* Adjust spacing for smaller screens */
+    @media screen and (max-width: 768px) {
+      .resume-btn {
+        position: fixed;
+        margin-top: 10px;
+        right: 500px;
+        
+      }
+
+      .header-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .header-container h1 {
+        padding-right: 0;
+      }
     }
-}
-@media (min-width: 769px) {
-    .gif-container {
-        position: relative;  /* Allows the GIF to be in its natural flow */
-        margin-top: 30px;  /* You can add space or adjust positioning as needed */
-    }
-}
-
-
-
-
-    </style>
+  </style>
 </head>
 <body>
-    
-    <div class="bottom-gif">
-        <img src="https://i.pinimg.com/originals/13/44/cd/1344cdb8afc60644ab100307da6c3487.gif" alt="Animated GIF">
+
+  <!-- ✅ Navigation Bar -->
+  <div class="navbar">
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- ✅ Main Content -->
+  <div class="container">
+    <div class="header-container">
+      <h1>Ajai Arivazhagan</h1>
+      <a href="https://pink-diahann-11.tiiny.site" class="resume-btn" download>Resume</a>
     </div>
     
+    <h2>Automation Tester - Fresher</h2>
+    <p style="color: #666; font-size: 1.2em;">
+      <i class="fas fa-map-marker-alt" style="color: red; margin-right: 8px;"></i>
+      <strong>Pondicherry.</strong>
+    </p>
 
-    <!-- Floating Background Logos -->
-    <div class="floating-logos">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Selenium_Logo.png" class="logo1">
-        <img src="https://avatars.githubusercontent.com/u/32243546?s=280&v=4" class="logo2">
-        <img src="https://cucumber.io/images/cucumber-open-gherkin-0ad722e0.png" class="logo3">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/TestNG-logo.png" class="logo4">
-        <img src="https://cucumber.io/images/cucumber-open-gherkin-0ad722e0.png" class="logo5">
+    <!-- Social Links -->
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/aajai1" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/aajai1" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="mailto:aajai6382@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="#" onclick="showPhonePopup()"><i class="fas fa-phone"></i></a>
     </div>
 
-    <!-- Navigation Bar -->
-    <div class="navbar">
-        <a href="#">Home</a>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#certifications">Certifications</a>
-        <a href="#education">Education</a>
-        <a href="#contact">Contact</a>
+    <!-- About Section -->
+    <div class="section" id="about">
+      <h3>About Me</h3>
+      <p>I am a passionate Automation Tester with a strong foundation in Selenium, Java, and web automation frameworks.</p>
     </div>
-    
 
-    <div class="container">
-        <h1>Ajai Arivazhagan</h1>
-        <h2>Automation Tester - Fresher</h2>
-        <p style="color: #666; font-size: 1.2em;">
-            <i class="fas fa-map-marker-alt" style="color: red; margin-right: 8px;"></i>
-            <strong>Pondicherry.</strong>
-        </p>
-        
+    <!-- Projects -->
+    <div class="section" id="Project">
+      <h3>Projects</h3>
+      <ul style="list-style-type: disc; padding-left: 20px; font-size: 1.2em;">
+        <li>
+          <strong>Ecommerce Website Testing</strong> -
+          <a href="https://github.com/aajai1/Ecommerce_Testing.git" target="_blank">GitHub Link</a>
+        </li>
+        <li>
+          <strong>WhatsApp Message Automation</strong> -
+          <a href="https://github.com/aajai1/Message-Automation.git" target="_blank">GitHub Link</a>
+        </li>
+        <li>
+          <strong>LinkedIn Likes Automation</strong> -
+          <a href="https://github.com/aajai1/Automate-Likes.git" target="_blank">GitHub Link</a>
+        </li>
+      </ul>
+    </div>
 
-        <!-- Social Icons -->
-        <div class="social-icons">
-            <a href="https://www.linkedin.com/in/aajai1" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/aajai1" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="mailto:aajai6382@gmail.com"><i class="fas fa-envelope"></i></a>
-            <a href="#" onclick="showPhonePopup()"><i class="fas fa-phone"></i></a>
-            
-        </div>
+    <!-- Skills -->
+    <div class="section" id="skills">
+      <h3>Skills</h3>
+      <ul style="list-style-type: disc; padding-left: 20px; font-size: 1.2em;">
+        <li>Selenium</li>
+        <li>Java</li>
+        <li>TestNG</li>
+        <li>Jenkins</li>
+        <li>Git</li>
+        <li>Cucumber</li>
+        <li>Postman</li>
+      </ul>
+    </div>
 
-        <!-- Sections -->
-        <div class="section" id="about">
-            <h3>About Me</h3>
-            <p>I am a passionate Automation Tester with a strong foundation in Selenium, Java, and web automation frameworks.</p>
-          
-        </div>
-        <div class="section" id="Project">
-            <h3>Projects</h3>
-            
-            <ul style="list-style-type: disc; padding-left: 20px; font-size: 1.2em; word-wrap: break-word; overflow-wrap: break-word;">
-                <li>
-                    <strong>Ecommerce Website Testing</strong> - 
-                    <a href="https://github.com/aajai1/Ecommerce_Testing.git" target="_blank" style="color: black; text-decoration: none; font-weight: normal;" onmouseover="this.style.fontWeight='bold'" onmouseout="this.style.fontWeight='normal'">
-                        https://github.com/aajai1/ecommerce-testing.git
-                    </a>
-                </li>
-                <li>
-                    <strong>WhatsApp Message Automation</strong> - 
-                    <a href="https://github.com/aajai1/Message-Automation.git" target="_blank" style="color: black; text-decoration: none; font-weight: normal;" onmouseover="this.style.fontWeight='bold'" onmouseout="this.style.fontWeight='normal'">
-                        https://github.com/aajai1/whatsapp-automation.git
-                    </a>
-                </li>
-                <li>
-                    <strong>LinkedIn Likes Automation</strong> - 
-                    <a href="https://github.com/aajai1/Automate-Likes.git" target="_blank" style="color: black; text-decoration: none; font-weight: normal;" onmouseover="this.style.fontWeight='bold'" onmouseout="this.style.fontWeight='normal'">
-                        https://github.com/aajai1/Automate-Likes.git
-                    </a>
-                </li>
-            </ul>
-    
-        </div>
-        
-        <div class="section" id="skills">
-            <h3>Skills</h3>
-            <ul style="list-style-type: disc; padding-left: 20px; font-size: 1.2em;">
-                <li>Selenium</li>
-                <li>Java</li>
-                <li>TestNG</li>
-                <li>Jenkins</li>
-                <li> Git</li>
-                <li>Cucumber</li>
-                <li>Postman</li>
-            </ul>
-        </div>
-        <div class="section" id="education">
-           
-                <h3>Education</h3>
-                <ul style="list-style-type: disc; padding-left: 20px; font-size: 1.2em;">
-                 <li><strong>B.Tech - Mechanical Engineering</strong> - 7.36 CGPA</li>  
-                <li><strong> Higher Secondary School Certificate</strong> - 57%</li>
-                <li><strong>Secondary School Leaving Certificate</strong> - 81%</li>
-            </ul>
-        </div>
-        
-        <div class="section" id="certifications">
-            <h3>Certifications</h3>
-            <p>Automation Testing </p>
-        </div>
-  
+    <!-- Education -->
+    <div class="section" id="education">
+      <h3>Education</h3>
+      <ul style="list-style-type: disc; padding-left: 20px; font-size: 1.2em;">
+        <li><strong>B.Tech - Mechanical Engineering</strong> - 7.36 CGPA</li>
+        <li><strong>Higher Secondary Certificate</strong> - 57%</li>
+        <li><strong>Secondary School Certificate</strong> - 81%</li>
+      </ul>
+    </div>
 
-<!-- Phone Popup Modal -->
-<div class="phone-modal" id="phoneModal">
+    <!-- Certifications -->
+    <div class="section" id="certifications">
+      <h3>Certifications</h3>
+      <p>Automation Testing</p>
+    </div>
+  </div>
+
+  <!-- Phone Popup Modal -->
+  <div class="phone-modal" id="phoneModal">
     <div class="phone-modal-content">
-        <p>Call me at: <strong>+91 6382971697</strong></p>
-        <button class="close-btn" onclick="closePhonePopup()">Close</button>
+      <p>Call me at: <strong>+91 6382971697</strong></p>
+      <button class="close-btn" onclick="closePhonePopup()">Close</button>
     </div>
-</div>
+  </div>
 
-
-
-
-
-
-        
-    </div>
-
-    <script>
-        function showPhonePopup() {
-        document.getElementById("phoneModal").style.display = "block";
+  <!-- JS for Phone Modal -->
+  <script>
+    function showPhonePopup() {
+      document.getElementById("phoneModal").style.display = "block";
     }
 
     function closePhonePopup() {
-        document.getElementById("phoneModal").style.display = "none";
+      document.getElementById("phoneModal").style.display = "none";
     }
-   
-    </script>
-
+  </script>
 </body>
 </html>
